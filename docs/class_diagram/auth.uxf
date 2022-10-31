@@ -1,0 +1,57 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>9</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>54</x><y>72</y><w>189</w><h>126</h></coordinates><panel_attributes>core.User
+--
+ID: string
+Username: string
+Email: string
+Password: string
+Fullname: string
+CreatedAt: int64
+UpdatedAt: int64</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>405</x><y>0</y><w>414</w><h>90</h></coordinates><panel_attributes>&lt;&lt;core.Auth&gt;&gt;
+--
++ Login(ctx context.Context, body LoginBodyRequest) error
++ Register(ctx context.Context, body RegisterBodyRequest) error
++ ForgotPassword(ctx context.Context, email string) error
++ ResetPassword(ctx context.Context, body ResetPasswordBodyRequest) error
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>405</x><y>189</y><w>414</w><h>117</h></coordinates><panel_attributes>&lt;&lt;core.Auth&gt;&gt;
+--
+- authStorage storage.Auth
+- userStorage storage.User
+--
++ Login(ctx context.Context, body LoginBodyRequest) error
++ Register(ctx context.Context, body RegisterBodyRequest) error
++ ForgotPassword(ctx context.Context, email string) error
++ ResetPassword(ctx context.Context, body ResetPasswordBodyRequest) error
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>603</x><y>81</y><w>27</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1071</x><y>117</y><w>189</w><h>63</h></coordinates><panel_attributes>LoginBodyRequest
+--
+Username: string
+Password: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1071</x><y>207</y><w>189</w><h>81</h></coordinates><panel_attributes>RegisterBodyRequest
+--
+Fullname: string
+Email: string
+Username: string
+Password: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1071</x><y>324</y><w>189</w><h>54</h></coordinates><panel_attributes>ResetPasswordBodyRequest
+--
+OldPassword: string
+NewPassword: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>144</y><w>279</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>290;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>234</y><w>279</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>290;20;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>243</y><w>279</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>290;120;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>558</x><y>504</y><w>468</w><h>54</h></coordinates><panel_attributes>&lt;&lt;storage.Auth&gt;&gt;
+--
++ Login(ctx context.Context, username string, password string) (user core.User, error)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>495</y><w>468</w><h>90</h></coordinates><panel_attributes>&lt;&lt;storage.User&gt;&gt;
+--
++ Insert(ctx context.Context, user core.User) (core.User, error)
++ Update(ctx context.Context, id string, user core.User) (core.User, error)
++ getById(ctx context.Context, id string) (core.User, error)
++ getByEmail(ctx context.Context, email string) (core.User, error)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>612</x><y>297</y><w>207</w><h>225</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>210;230;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>243</x><y>297</y><w>387</w><h>216</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;220;410;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>558</x><y>639</y><w>468</w><h>54</h></coordinates><panel_attributes>&lt;&lt;storage.Auth&gt;&gt;
+--
+- sqlClient *sql.Client
+--
++ Login(ctx context.Context, username string, password string) (user core.User, error)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>783</x><y>549</y><w>27</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>9</x><y>639</y><w>468</w><h>90</h></coordinates><panel_attributes>&lt;&lt;storage.User&gt;&gt;
+--
+- sqlClient *sql.Client
+--
++ Insert(ctx context.Context, user core.User) (core.User, error)
++ Update(ctx context.Context, id string, user core.User) (core.User, error)
++ getById(ctx context.Context, id string) (core.User, error)
++ getByEmail(ctx context.Context, email string) (core.User, error)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>198</x><y>576</y><w>27</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element></diagram>
